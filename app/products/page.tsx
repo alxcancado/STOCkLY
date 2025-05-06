@@ -1,15 +1,17 @@
 import { PlusIcon } from "lucide-react";
 import { Button } from "../_components/ui/button";
-import { db } from "../_lib/prisma";
 import { DataTable } from "../_components/ui/data-table";
 import { productTableColumns } from "./_components/table-columns";
+import { getProducts } from "../_data-access/product/get-products";
 
 const ProductsPage = async () => {
   // isso aqui é um server component, portanto podemos fazer chamadas a API diretamente aqui
   // não é o ideal, mas é só um exemplo
   // const products = await fetch('https://dummyjson.com/products').then((res) => res.json());
   // como é um server component, consigo transformar em função async e fazer chamadas a API diretamente aqui
-  const products = await db.product.findMany();
+
+  const products = await getProducts();
+
   return (
     <div className="m-4 w-full space-y-4 rounded-lg bg-white p-4">
       {/* Esquerda */}
