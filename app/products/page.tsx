@@ -10,7 +10,8 @@ const ProductsPage = async () => {
   // const products = await fetch('https://dummyjson.com/products').then((res) => res.json());
   // como é um server component, consigo transformar em função async e fazer chamadas a API diretamente aqui
 
-  const products = await getProducts();
+  // const response = await fetch("http://localhost:3000/api/products");
+  const products = await getProducts(); //await response.json();
 
   return (
     <div className="m-4 w-full space-y-4 rounded-lg bg-white p-4">
@@ -28,7 +29,10 @@ const ProductsPage = async () => {
           Novo Produto
         </Button>
       </div>
-      <DataTable columns={productTableColumns} data={products} />
+      <DataTable
+        columns={productTableColumns}
+        data={JSON.parse(JSON.stringify(products))}
+      />
     </div>
   );
 };
